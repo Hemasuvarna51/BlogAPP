@@ -1,0 +1,99 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+body {
+  margin: 0;
+}
+
+/*
+.navbar{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+}
+
+.logo{
+  width : 60px;
+  height : 60px;
+  font-size: 20px ;
+  color: rgb(79, 75, 75);
+  font-weight: bold;
+  margin-left: 18px;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav a{
+  text-decoration: none;
+  color: black;
+  margin: 0 7px;
+
+}
+*/
+
+
+
+.main{
+  height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.main h1{
+  font-size:40px;
+  margin-top: 10px;
+
+}
+.main p{
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.buttons{
+  display:flex;
+  gap:30px;
+}
+
+.download{
+  text-decoration: none;
+  color: white;
+  background-color: blue;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+
+}
+
+.gitHub{
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+}
+
+.context{
+  height: 100vh;
+  display: flex;
+  flex-direction: column ;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+
+
