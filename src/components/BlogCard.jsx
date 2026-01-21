@@ -44,8 +44,14 @@ function BlogCard({blog}){
         <Card>
             {blog.image && <Image src={blog.image} alt={blog.title} />}
             <h3>{blog.title}</h3>
-            <Content>{blog.content}</Content>
-            <Link to={`/blog/${blog.id}`}>Read More</Link>
+            <Content
+              dangerouslySetInnerHTML={{
+                __html: blog.content
+            }}
+            />
+
+            <Link to={`/blog/${blog._id}`}>Read More</Link>
+
             
         </Card>
     )

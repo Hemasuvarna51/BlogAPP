@@ -57,6 +57,8 @@ const Sidebar = styled.aside`
 
 export default function Home({ blogs }) {
 
+  console.log("HOME BLOGS:", blogs);
+  console.log("FIRST BLOG:", blogs[0]);
 
   return (
     <Layout>
@@ -64,7 +66,7 @@ export default function Home({ blogs }) {
         <h2>Latest Posts</h2>
         <div className="posts">
           {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
+            <BlogCard key={blog._id} blog={blog} />
           ))}
         </div>
       </Main>

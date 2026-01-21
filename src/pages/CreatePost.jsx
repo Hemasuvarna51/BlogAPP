@@ -84,11 +84,12 @@ function CreatePost({ setBlogs }) {
   const submitHandler = async (e) => {
   e.preventDefault();
 
-  const formData = new FormData();
-  formData.append("title", title);
-  formData.append("content", content);
-  if (image) {
-    formData.append("image", image);
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Session expired. Please login again.");
+    navigate("/login");
+    return;
   }
 
   const res = await fetch(
@@ -96,22 +97,25 @@ function CreatePost({ setBlogs }) {
     {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
-      body: formData,
+      body: JSON.stringify({ title, content }),
     }
   );
 
   const data = await res.json();
 
   if (!res.ok) {
-    alert(data.message || "Post creation failed");
+    console.error("POST ERROR:", data);
+    alert(data.message || "Unauthorized");
     return;
   }
 
-  setBlogs((prev) => [...prev, data]);
+  setBlogs(prev => [...prev, data]);
   navigate("/");
 };
+
 
 
 

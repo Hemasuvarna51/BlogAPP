@@ -20,13 +20,15 @@ function App() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    const posts = JSON.parse(localStorage.getItem('posts')) || [];
-    setBlogs(posts);
-  }, []);
+  fetch("https://blog-app-0p3z.onrender.com/api/blogs")
+    .then(res => res.json())
+    .then(data => {
+      console.log("BLOGS FROM BACKEND:", data);
+      setBlogs(data);
+    })
+    .catch(err => console.error(err));
+    }, []);
 
-  useEffect(() => {
-    localStorage.setItem('posts', JSON.stringify(blogs));
-  }, [blogs]);
 
 
 
