@@ -10,6 +10,7 @@ import CreatePost from './pages/CreatePost.jsx'
 import BlogDetails from './pages/BlogDetails.jsx'
 import SignUp from './pages/signUp.jsx'
 import Login from './pages/LogIn.jsx' 
+import AllBlogs from './pages/AllBlogs.jsx'
 import NavBar from './components/NavBar.jsx' 
 
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/createpost" element={<CreatePost setBlogs={setBlogs} />} />
           <Route path="/blog/:id" element ={<BlogDetails blogs={blogs} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/allblogs" element={<AllBlogs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />

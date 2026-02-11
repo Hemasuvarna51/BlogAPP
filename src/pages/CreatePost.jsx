@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -64,86 +64,74 @@ function CreatePost({ setBlogs }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
-
-   /*useEffect(() => {
-    getBlogs();
-  }, []); 
-
-  async function getBlogs() {
-    let response = await fetch("https://blog-app-0p3z.onrender.com/api/blogs");
-    let data = await response.json();
-    console.log(data);
-    setBlogs(data);
-  }*/
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setImage(file); 
+    setImage(file);
   };
 
   const submitHandler = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-  if (!token) {
-    alert("Session expired. Please login again.");
-    navigate("/login");
-    return;
-  }
-
-  const res = await fetch(
-    "https://blog-app-0p3z.onrender.com/api/blogs",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-      body: JSON.stringify({ title, content }),
+    if (!token) {
+      alert("Session expired. Please login again.");
+      navigate("/login");
+      return;
     }
-  );
 
-  const data = await res.json();
+    const res = await fetch(
+      "https://blog-app-0p3z.onrender.com/api/blogs",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ title, content }),
+      }
+    );
 
-  if (!res.ok) {
-    console.error("POST ERROR:", data);
-    alert(data.message || "Unauthorized");
-    return;
-  }
+    const data = await res.json();
 
-  setBlogs(prev => [...prev, data]);
-  navigate("/");
-};
+    if (!res.ok) {
+      console.error("POST ERROR:", data);
+      alert(data.message || "Unauthorized");
+      return;
+    }
+
+    setBlogs(prev => [...prev, data]);
+    navigate("/");
+  };
 
 
 
 
   return (
     <div>
-    <BackBtn onClick={() => navigate(-1)}>&larr; Back</BackBtn>
-    <Form onSubmit={submitHandler}>
-     
-      <h3>Create New Post</h3>
+      <BackBtn onClick={() => navigate(-1)}>&larr; Back</BackBtn>
+      <Form onSubmit={submitHandler}>
 
-      <input type="file" accept="image/*" onChange={handleImageChange} />
+        <h3>Create New Post</h3>
 
-      <input
-        type="text"
-        value={title}
-        placeholder="Title"
-        onChange={(e) => setTitle(e.target.value)}
-      />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
 
-      <textarea
-        value={content}
-        placeholder="Write your post here..."
-        rows="8"
-        onChange={(e) => setContent(e.target.value)}
-      />
+        <input
+          type="text"
+          value={title}
+          placeholder="Title"
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-      <button type="submit">Publish</button>
-    </Form>
+        <textarea
+          value={content}
+          placeholder="Write your post here..."
+          rows="8"
+          onChange={(e) => setContent(e.target.value)}
+        />
+
+        <button type="submit">Publish</button>
+      </Form>
     </div>
   );
 }

@@ -76,7 +76,7 @@ function NavBar() {
                 </NavLogo>
                 <NavLinks>
                     <Link to="/">Home</Link> {" "}
-                    <Link to="/createpost">Create Post</Link> {" "}
+                    <Link to="/allblogs">All Blogs</Link> {" "}
                     <Link to="/about">About</Link> {" "}
                     <Link to="/contact">Contact</Link> {" "}
                 </NavLinks>

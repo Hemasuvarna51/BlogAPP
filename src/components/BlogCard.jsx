@@ -5,10 +5,10 @@ import styled from "styled-components";
 const Card = styled.article`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 
-  padding: 20px;
-  background: #beccf0ff;
+  padding: 20px 30px;
+  background: rgb(213, 222, 245);
   border-radius: 10px;
 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

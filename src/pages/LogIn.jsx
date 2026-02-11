@@ -57,31 +57,36 @@ function Login() {
     
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+  e.preventDefault();
 
-        const res = await fetch("https://blog-app-0p3z.onrender.com/api/auth/login",
-            {
-                method: "POST",
-                body: JSON.stringify({ email, password }),
-                headers: { "Content-Type": "application/json",  
-                }
-                
-            }
-        );
-        const data = await res.json();
-
-        if (!res.ok) {
-            alert(data.message || "Login failed");
-            return;
-        }
-
-        // ✅ store token only
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("isAuth", "true");
-
-        navigate("/");
-
+  const res = await fetch(
+    "https://blog-app-0p3z.onrender.com/api/auth/login",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
     }
+  );
+
+  const data = await res.json();
+  console.log("RESPONSE 👉", data);
+
+  if (!res.ok) {
+    alert(data.message || "Login failed");
+    return;
+  }
+
+  localStorage.setItem("token", data.token);
+  localStorage.setItem("isAuth", "true");
+
+  navigate("/createpost");
+}
+
 
     return (
        <Form onSubmit={handleSubmit}>

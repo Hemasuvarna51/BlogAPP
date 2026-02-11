@@ -52,10 +52,28 @@ const Sidebar = styled.aside`
   }
 `;
 
-export default function Home() {
+export default function AllBlogs() {
   const [blogs, setBlogs] = useState([]);
 
+  useEffect(() => {
+    // Fetch blogs from backend
+    fetch("https://blog-app-0p3z.onrender.com/api/blogs")
+      .then((res) => res.json())
+      .then((data) => {
+        // Sort by createdAt descending (latest first)
+        const sortedBlogs = data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setBlogs(sortedBlogs);
 
+        // ✅ Console check to verify latest first
+        console.log("ALL BLOGS SORTED:", sortedBlogs);
+        if (sortedBlogs.length > 0) {
+          console.log("LATEST BLOG:", sortedBlogs[0]);
+        }
+      })
+      .catch((err) => console.error("Error fetching blogs:", err));
+  }, []);
 
   return (
     <Layout>
